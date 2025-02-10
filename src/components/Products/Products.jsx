@@ -14,6 +14,7 @@ const Products = () => {
     const [isPreviousDisabled, setIsPreviousDisabled] = useState(true);
     const [isNextDisabled, setIsNextDisabled] = useState(false);
 
+    // Fetching products data
     const fetchProducts = async () => {
         try {
             setIsLoading(true);
@@ -35,6 +36,7 @@ const Products = () => {
         }
     }
 
+    // Handle search button click
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchInput === "") {
@@ -49,6 +51,7 @@ const Products = () => {
         setFetchUrl(`https://dummyjson.com/products/search?limit=12&q=${searchInput}&skip=0`)
     }
 
+    // Handle previous button click
     const handlePreviousClick = () => {
         setIsNextDisabled(false);
         if (productsSkipNumber == 12) {
@@ -58,6 +61,7 @@ const Products = () => {
         setProductsSkipNumber(productsSkipNumber - 12);
     }
 
+    // Handle next button click
     const handleNextClick = () => {
         setIsPreviousDisabled(false);
         setFetchUrl(`${baseUrl}&skip=${productsSkipNumber + 12}`);
@@ -114,8 +118,8 @@ const Products = () => {
 
                 <div className="flex justify-center mt-8">
                     <div className="join grid grid-cols-2">
-                        <button className="join-item btn btn-outline" onClick={handlePreviousClick} disabled={isPreviousDisabled}>Previous</button>
-                        <button className="join-item btn btn-outline" onClick={handleNextClick} disabled={isNextDisabled}>Next</button>
+                        <button className="join-item btn btn-outline focus:bg-transparent focus:border focus:border-black" onClick={handlePreviousClick} disabled={isPreviousDisabled}>Previous</button>
+                        <button className="join-item btn btn-outline focus:bg-transparent focus:border focus:border-black" onClick={handleNextClick} disabled={isNextDisabled}>Next</button>
                     </div>
                 </div>
             </div>

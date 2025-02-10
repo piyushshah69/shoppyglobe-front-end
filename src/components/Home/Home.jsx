@@ -11,12 +11,12 @@ const Home = () => {
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Fetching products
     const fetchProducts = async () => {
         try {
             const response = await fetch('https://dummyjson.com/products?sortBy=rating&order=desc&limit=12');
             const data = await response.json();
             setProducts(data.products);
-            console.log(data.products);
         } catch (error) {
             setIsError(true);
             console.log(error.message);

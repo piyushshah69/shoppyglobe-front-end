@@ -11,11 +11,13 @@ const CartItem = ({product}) => {
     const dispatch = useDispatch();
     const [showMinus, setShowMinus] = useState(product.quantity > 1);
 
+    // Handle increase quantity click
     const handleAddClick = (product) => {
         setShowMinus(true);
         dispatch(addToCart(product));
     }
 
+    // Handle decrease quantity click
     const handleRemoveClick = (id, quantity) => {
         if (quantity == 2) {
             setShowMinus(false);
@@ -27,18 +29,20 @@ const CartItem = ({product}) => {
         }
     }
 
+    // Handle remove product from cart
     const handleRemoveProduct = (id) => {
         dispatch(removeFromCart(id));
     }
+    
     return (
-        <div key={product.id} className="flex gap-4 md:gap-6 p-2 border border-gray-300">
+        <div key={product.id} className="flex gap-4 md:gap-6 p-2 border border-gray-300 w-full">
             <Link to={`/products/${product.id}`} className="w-[25%]">
                 <div className="w-full h-full object-contain grid grid-cols-1 bg-blue-50">
                     <LazyLoadImage src={product.product.thumbnail} className="bg-blue-50 w-fill h-full object-contain" effect="blur" />
                 </div>
             </Link>
             <div className="relative w-[75%] flex flex-col items-start justify-center">
-                <button className="btn btn-sm btn-circle btn-ghost absolute top-0 right-0" onClick={() => document.getElementById('my_modal_2').showModal()}><span className="text-lg">✕</span></button>
+                <button className="btn btn-sm btn-circle btn-ghost absolute top-[-5px] right-[-5px]" onClick={() => document.getElementById('my_modal_2').showModal()}><span className="text-lg">✕</span></button>
                 <dialog id="my_modal_2" className="modal">
                     <div className="modal-box max-w-[400px]">
                         <h3 className="font-bold text-lg">Remove from Cart</h3>

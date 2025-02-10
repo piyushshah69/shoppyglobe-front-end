@@ -1,9 +1,9 @@
 const PageLoader = () => {
   return (
-    <div className="w-screen h-[calc(100vh-68px)] grid place-items-center">
-        <span className="loading loading-dots w-[5%]"></span>
+    <div className="w-full h-[calc(100vh-100px)] grid place-items-center">
+        <span className="loading loading-dots w-[50px]"></span>
     </div>
   )
 }
 
-export default PageLoader
+export default PageLoader;

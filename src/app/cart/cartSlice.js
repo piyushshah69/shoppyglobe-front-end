@@ -16,6 +16,7 @@ export const cartSlice = createSlice({
                         id: action.payload.id,
                         quantity: 1,
                         product: action.payload,
+                        amount: (action.payload.price - (action.payload.discountPercentage / 100) * action.payload.price).toFixed(2),
                     }
                 );
             }
@@ -28,9 +29,12 @@ export const cartSlice = createSlice({
             const id = action.payload;
             const item = state.find(item => item.id === id);
             item.quantity--;
+        },
+        emptyCart: () => {
+            return [];
         }
     }
 })
 
-export const { addToCart, removeFromCart, decreaseQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseQuantity, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;
